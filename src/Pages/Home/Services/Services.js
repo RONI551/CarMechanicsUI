@@ -5,11 +5,13 @@ import './Services.css';
 const Services = () => {
 
     const [services, setServices] = useState([]);
+    console.log(services)
 
     useEffect( ()=>{
-        fetch('services.json')
+        fetch('https://genius-car-mechanics-server.onrender.com/services')
         .then(res => res.json())
-        .then(data => setServices(data));
+        .then(data => setServices(data))
+        
     }, [])
 
     return (
@@ -18,8 +20,8 @@ const Services = () => {
             <h1 className='text-primary text-center mt-5'> Our Services</h1>
             <div className="services-container">
             {
-                services.map(service => <Service
-                    key={service.id}
+                services.slice(0,3).map(service => <Service
+                    key={service._id}
                     service={service}
                 >
                 </Service>)
